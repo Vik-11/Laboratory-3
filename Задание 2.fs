@@ -30,6 +30,6 @@ let q = getInt()
 
 printfn "Enter strings: "
 let s1 = readSeq q
-let SH = findSH s1
-let lg = SH.Length
-printf "Shortest is: %s, length is: %d" SH lg
+let SH = lazy (findSH s1)
+let lg = lazy (SH.Value.Length)
+printf "Shortest is: %s, length is: %d" (SH.Force()) (lg.Force())
