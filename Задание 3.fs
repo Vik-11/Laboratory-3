@@ -7,8 +7,18 @@ let getLF (way: string) =
     |> Seq.sort
     |> Seq.tryLast
 
-let way = "C:\Users\Viktor\Desktop\Лабораторные работы по языкам программирования\Лабораторная работа 3\Задание 3\ListOfFiles"
-
-match getLF (way) with
+printfn "Enter path to directory: "
+let rec readD () = 
+     printfn "Enter valid directory: "
+     let path = Console.ReadLine()
+     if Directory.Exists(path) then
+         path
+     else
+         printfn "Directory do not exists. Try again"
+         readD()
+    
+//way = "C:\Users\Viktor\Desktop\Лабораторные работы по языкам программирования\Лабораторная работа 3\Задание 3\ListOfFiles"
+let NewPath = readD()
+match getLF NewPath with
 | Some file -> printfn "Name of the last file by alphabetical order is: %s" file
-| None -> printfn "Directory not found or empty"
+| None -> printfn "Directory is empty"         
